@@ -1,0 +1,3 @@
+/target
+# Each NSH checkout under test brings its own (`cargo xtask compat` copies it).
+/Cargo.lock

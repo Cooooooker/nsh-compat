@@ -1,0 +1,6 @@
+# The parts of NSH's API closed for security: the only removals of what a
+# release shipped (NSH's docs/dev/compatibility.md, rule 7). One per line,
+# `<entry> -- <reason>`, the entry as the checks report the break:
+# `[<module>] <path>` (a name of runtime.txt), `<file>: <Name>` or
+# `<file>: <Name>.<member>` (a declaration of types/), `tailwind <class>`,
+# or `<file>` (all of it). An entry closes its name and everything under it.
