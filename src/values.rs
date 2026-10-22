@@ -546,6 +546,7 @@ impl Mounted {
         );
         out.put("filter", filters(&effects.filters));
         out.put("backdropFilter", filters(&effects.backdrop_filters));
+        out.put("glassEffect", s.glass_effect.name().into());
         out.put(
             "maskImage",
             or_none(list(effects.mask_images.iter().map(gradient))),
