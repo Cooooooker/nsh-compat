@@ -322,6 +322,7 @@ impl Mounted {
                     out.put("maxLength", v.to_string());
                 }
                 out.put("readonly", (!c.editable).to_string());
+                out.put("pasteBehavior", c.paste_behavior.js_name().into());
                 if let Some(v) = c.submit_behavior {
                     out.put("submitBehavior", v.js_name().into());
                 }
@@ -1098,6 +1099,19 @@ fn values_are_written_as_apps_write_them() {
     };
     view.style.as_mut().unwrap().backdrop_material = nsh_core::BackdropMaterial::Regular;
     assert_eq!(view.props()["backdropMaterial"], "regular");
+
+    let mut input = Mounted {
+        kind: Some(ViewKind::Input),
+        ..Default::default()
+    };
+    assert_eq!(input.props()["pasteBehavior"], "insert");
+    let mut config = InputConfig::default();
+    config.paste_behavior = nsh_core::PasteBehavior::Report;
+    input.apply(&MountItem::Input {
+        id: 1,
+        config: Box::new(config),
+    });
+    assert_eq!(input.props()["pasteBehavior"], "report");
 }
 
 /// Keys added after the ones above, read from what the platform is told
